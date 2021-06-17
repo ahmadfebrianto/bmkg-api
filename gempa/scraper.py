@@ -21,61 +21,66 @@ def send_request(url):
 
 def get_gempa_terbaru(url):
     response = send_request(url)
-    parsed_response = parse_gempa_terbaru(response)
-    delete_all_data(GempaTerbaru)
-    for item in parsed_response:
-        gempa_terbaru = GempaTerbaru()
-        gempa_terbaru.id = item[0]
-        gempa_terbaru.tanggal = item[1]
-        gempa_terbaru.jam = item[2]
-        gempa_terbaru.koordinat = item[3]
-        gempa_terbaru.magnitude = item[4]
-        gempa_terbaru.kedalaman = item[5]
-        gempa_terbaru.wilayah = item[6]
-        gempa_terbaru.potensi = item[7]
-        gempa_terbaru.dirasakan = item[8]
+    if response:
+        parsed_response = parse_gempa_terbaru(response)
+        delete_all_data(GempaTerbaru)
+        for item in parsed_response:
+            gempa_terbaru = GempaTerbaru()
+            gempa_terbaru.id = item[0]
+            gempa_terbaru.tanggal = item[1]
+            gempa_terbaru.jam = item[2]
+            gempa_terbaru.koordinat = item[3]
+            gempa_terbaru.magnitude = item[4]
+            gempa_terbaru.kedalaman = item[5]
+            gempa_terbaru.wilayah = item[6]
+            gempa_terbaru.potensi = item[7]
+            gempa_terbaru.dirasakan = item[8]
 
-        insert_data(gempa_terbaru)
+            insert_data(gempa_terbaru)
 
 
 def get_gempa_5sr(url):
     response = send_request(url)
-    parsed_response = parse_gempa_5sr(response)
-    for item in parsed_response:
-        result = query_data_by_id(GempaLimaSR, item[0])
-        if result:
-            continue
-        gempa_5sr = GempaLimaSR()
-        gempa_5sr.id = item[0]
-        gempa_5sr.tanggal = item[1]
-        gempa_5sr.jam = item[2]
-        gempa_5sr.koordinat = item[3]
-        gempa_5sr.magnitude = item[4]
-        gempa_5sr.kedalaman = item[5]
-        gempa_5sr.wilayah = item[6]
-        gempa_5sr.potensi = item[7]
+    if response:
+        parsed_response = parse_gempa_5sr(response)
+        delete_all_data(GempaTerbaru)
+        for item in parsed_response:
+            result = query_data_by_id(GempaLimaSR, item[0])
+            if result:
+                continue
+            gempa_5sr = GempaLimaSR()
+            gempa_5sr.id = item[0]
+            gempa_5sr.tanggal = item[1]
+            gempa_5sr.jam = item[2]
+            gempa_5sr.koordinat = item[3]
+            gempa_5sr.magnitude = item[4]
+            gempa_5sr.kedalaman = item[5]
+            gempa_5sr.wilayah = item[6]
+            gempa_5sr.potensi = item[7]
 
-        insert_data(gempa_5sr)
+            insert_data(gempa_5sr)
 
 
 def get_gempa_dirasakan(url):
     response = send_request(url)
-    parsed_response = parse_gempa_dirasakan(response)
-    for item in parsed_response:
-        result = query_data_by_id(GempaDirasakan, item[0])
-        if result:
-            continue
-        gempa_dirasakan = GempaDirasakan()
-        gempa_dirasakan.id = item[0]
-        gempa_dirasakan.tanggal = item[1]
-        gempa_dirasakan.jam = item[2]
-        gempa_dirasakan.koordinat = item[3]
-        gempa_dirasakan.magnitude = item[4]
-        gempa_dirasakan.kedalaman = item[5]
-        gempa_dirasakan.wilayah = item[6]
-        gempa_dirasakan.dirasakan = item[7]
+    if response:
+        parsed_response = parse_gempa_dirasakan(response)
+        delete_all_data(GempaTerbaru)
+        for item in parsed_response:
+            result = query_data_by_id(GempaDirasakan, item[0])
+            if result:
+                continue
+            gempa_dirasakan = GempaDirasakan()
+            gempa_dirasakan.id = item[0]
+            gempa_dirasakan.tanggal = item[1]
+            gempa_dirasakan.jam = item[2]
+            gempa_dirasakan.koordinat = item[3]
+            gempa_dirasakan.magnitude = item[4]
+            gempa_dirasakan.kedalaman = item[5]
+            gempa_dirasakan.wilayah = item[6]
+            gempa_dirasakan.dirasakan = item[7]
 
-        insert_data(gempa_dirasakan)
+            insert_data(gempa_dirasakan)
 
 
 def main():

@@ -1,6 +1,6 @@
 month_mapper = {
-    "Januari": "00",
-    "Februari": "01",
+    "Januari": "01",
+    "Februari": "02",
     "Maret": "03",
     "April": "04",
     "Mei": "05",
